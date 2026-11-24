@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MC智能手机 + GaoLLC · 新用户上手指南</title>
+<style>
+  :root{
+    --bg:#0b1220; --panel:#141d2e; --panel2:#1b2740; --ink:#eaf1fb; --muted:#93a4c0;
+    --blue:#5ab0ff; --cyan:#43d6d0; --gold:#ffcf5c; --green:#57d98a;
+    --line:#27354f; --shadow:0 10px 30px rgba(0,0,0,.4);
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:radial-gradient(1200px 600px at 80% -10%,#17345c 0%,transparent 60%),
+    linear-gradient(170deg,#0b1220,#0e1728 60%,#0b1220);color:var(--ink);
+    font-family:"Segoe UI","Microsoft YaHei",system-ui,sans-serif;line-height:1.75;}
+  .wrap{max-width:1000px;margin:0 auto;padding:34px 20px 80px;}
+
+  header{position:relative;overflow:hidden;background:linear-gradient(135deg,#1a3a66 0%,#134a52 100%);
+    border:1px solid var(--line);border-radius:22px;padding:38px 40px;box-shadow:var(--shadow);}
+  header:after{content:"";position:absolute;right:-80px;top:-90px;width:320px;height:320px;
+    background:radial-gradient(circle,rgba(90,176,255,.3),transparent 68%);}
+  .hero{display:flex;align-items:center;gap:24px;flex-wrap:wrap;position:relative;z-index:2;}
+  .hero img{width:96px;height:96px;image-rendering:pixelated;background:#0c1424;
+    border:1px solid var(--line);border-radius:16px;padding:6px;}
+  .eyebrow{font-size:12px;letter-spacing:3px;color:var(--cyan);font-weight:700;}
+  h1{font-size:31px;margin:6px 0 8px;}
+  .lead{color:#c6d6ee;font-size:15px;max-width:640px;}
+  .badges{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px;position:relative;z-index:2;}
+  .badge{background:rgba(255,255,255,.08);border:1px solid var(--line);font-size:12px;
+    padding:5px 13px;border-radius:20px;color:#cfe0f6;}
+
+  nav{position:sticky;top:0;z-index:30;display:flex;flex-wrap:wrap;gap:6px;
+    background:rgba(11,18,32,.94);backdrop-filter:blur(10px);border:1px solid var(--line);
+    border-radius:12px;padding:10px 14px;margin-top:20px;}
+  nav a{color:var(--muted);text-decoration:none;font-size:13px;padding:5px 12px;border-radius:8px;}
+  nav a:hover{background:var(--panel2);color:var(--blue);}
+
+  section{background:var(--panel);border:1px solid var(--line);border-radius:16px;
+    padding:26px 30px;margin-top:20px;box-shadow:0 4px 16px rgba(0,0,0,.2);}
+  h2{font-size:20px;margin:0 0 16px;padding-bottom:12px;border-bottom:2px solid var(--line);
+    display:flex;align-items:center;gap:12px;}
+  h2 .num{background:linear-gradient(135deg,var(--blue),var(--cyan));color:#06121f;
+    font-size:12px;border-radius:8px;padding:3px 10px;font-weight:800;}
+  h3{font-size:15px;margin:18px 0 8px;color:var(--cyan);}
+  p{margin:8px 0;} ul,ol{margin:8px 0;padding-left:22px;} li{margin:7px 0;}
+  strong{color:#fff;}
+  code{background:#0a101c;border:1px solid var(--line);color:var(--gold);
+    padding:2px 8px;border-radius:5px;font-size:13px;font-family:Consolas,monospace;}
+  .cmd{display:inline-block;background:#0a101c;border:1px solid #2c3d5c;color:var(--gold);
+    padding:4px 12px;border-radius:7px;font-family:Consolas,monospace;font-size:13px;margin:3px 4px 3px 0;}
+
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:16px;}
+  .step{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:18px 20px;position:relative;}
+  .step .n{position:absolute;top:-12px;left:18px;background:var(--blue);color:#06121f;
+    font-weight:800;font-size:12px;border-radius:8px;padding:3px 11px;}
+  .step h4{margin:8px 0 6px;font-size:15px;color:var(--blue);}
+  .step p{font-size:13px;color:var(--muted);margin:4px 0;}
+
+  table{width:100%;border-collapse:collapse;margin-top:10px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 12px;text-align:left;}
+  th{background:var(--panel2);color:var(--blue);font-weight:700;}
+  tr:nth-child(even) td{background:rgba(255,255,255,.02);}
+
+  .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:14px;}
+  .card{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .card h4{margin:0 0 6px;font-size:15px;color:var(--cyan);}
+  .card p{font-size:13px;color:var(--muted);margin:4px 0;}
+
+  .craft{display:grid;grid-template-columns:repeat(3,74px);gap:6px;justify-content:center;margin:16px 0;}
+  .cell{height:66px;background:#0a101c;border:1px solid var(--line);border-radius:8px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    font-size:12px;color:#cfe0f6;text-align:center;line-height:1.3;}
+  .cell b{font-size:13px;color:#fff;}
+  .cell.blank{background:transparent;border-style:dashed;opacity:.35;}
+
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:12px;}
+  .flow .node{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:6px 11px;font-size:12px;}
+  .flow .arr{color:var(--cyan);font-weight:800;}
+
+  .note{background:rgba(255,207,92,.08);border-left:4px solid var(--gold);padding:12px 16px;
+    border-radius:8px;font-size:13px;color:#f0d99b;margin-top:14px;}
+  .ok{background:rgba(87,217,138,.09);border-left:4px solid var(--green);padding:12px 16px;
+    border-radius:8px;font-size:13px;color:#b6efc9;margin-top:14px;}
+  .warn{background:rgba(255,138,92,.09);border-left:4px solid #ff8a5c;padding:12px 16px;
+    border-radius:8px;font-size:13px;color:#ffc4a3;margin-top:14px;}
+
+  .faq details{background:var(--panel2);border:1px solid var(--line);border-radius:10px;
+    padding:12px 16px;margin-top:10px;}
+  .faq summary{cursor:pointer;color:var(--blue);font-weight:600;font-size:14px;}
+  .faq details p{color:var(--muted);font-size:13px;margin:10px 0 2px;}
+
+  .coinTop{display:flex;align-items:center;gap:14px;margin:6px 0 14px;}
+  .coinTop img{width:56px;height:56px;image-rendering:pixelated;border:1px solid var(--line);
+    border-radius:10px;background:#0a101c;}
+  .foot{text-align:center;color:var(--muted);font-size:12px;margin-top:32px;padding-top:18px;border-top:1px solid var(--line);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="hero">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAS0lEQVR42mNgoBaQkJD5TwrG0Gxu5UQSRjEEZoDNtNdEYbwGPPz6H0MDuhhtXQDCAScqsGL6uWAkG0BxSkTGvy65oWC8BlCcmSgBAGjGlmKzHtjsAAAAAElFTkSuQmCC" alt="智能手机图标">
+      <div>
+        <div class="eyebrow">MINECRAFT 中国版 · 附加包</div>
+        <h1>MC智能手机 + GaoLLC</h1>
+        <div class="lead">把一部智能手机装进背包。手持右键打开界面，识别方块、清理方块、查看背包、传送标点、逛商城、赚炎币——全部在一块屏幕上完成。</div>
+      </div>
+    </div>
+    <div class="badges">
+      <span class="badge">新手友好</span>
+      <span class="badge">15 个功能按钮</span>
+      <span class="badge">8 条聊天命令</span>
+      <span class="badge">12 种物品 · 21 条配方</span>
+      <span class="badge">生存 / 创造都能用</span>
+    </div>
+  </header>
+
+  <nav>
+    <a href="#s1">三步开始</a>
+    <a href="#s2">怎么拿手机</a>
+    <a href="#s3">界面功能</a>
+    <a href="#s4">炎币与商城</a>
+    <a href="#s5">升级路线</a>
+    <a href="#s6">命令速查</a>
+    <a href="#s7">常见问题</a>
+  </nav>
+
+  <section id="s1">
+    <h2><span class="num">01</span>三步开始</h2>
+    <div class="steps">
+      <div class="step"><span class="n">STEP 1</span>
+        <h4>导入组件</h4>
+        <p>下载组件后，在游戏里点"导入"，等提示成功。</p>
+      </div>
+      <div class="step"><span class="n">STEP 2</span>
+        <h4>启用两个包</h4>
+        <p>新建世界 → 行为包和资源包<strong>都要勾选</strong>"MC智能手机"。两个缺一个都不行。</p>
+      </div>
+      <div class="step"><span class="n">STEP 3</span>
+        <h4>拿到手机</h4>
+        <p>创造模式从物品栏直接拿"智能手机 I"，或在工作台合成。手持手机<strong>右键</strong>打开界面。</p>
+      </div>
+    </div>
+    <div class="ok">生存模式和创造模式功能完全一样，命令也一样。想先熟悉功能，建议开创造模式随便试。</div>
+  </section>
+
+  <section id="s2">
+    <h2><span class="num">02</span>怎么拿手机</h2>
+    <h3>工作台合成（3×3）</h3>
+    <div class="craft">
+      <div class="cell"><b>羊毛</b>任意颜色</div><div class="cell"><b>铁锭</b></div><div class="cell"><b>羊毛</b>任意颜色</div>
+      <div class="cell"><b>红石粉</b></div><div class="cell"><b>钻石块</b></div><div class="cell"><b>红石粉</b></div>
+      <div class="cell"><b>羊毛</b>任意颜色</div><div class="cell"><b>铁锭</b></div><div class="cell"><b>羊毛</b>任意颜色</div>
+    </div>
+    <p>四角任意颜色的羊毛，上下放铁锭，左右放红石粉，正中放钻石块。</p>
+
+    <h3>或者直接输入命令</h3>
+    <span class="cmd">/give @s phone:phone_i</span>
+    <span class="cmd">/give @s phone:phone_promax</span>
+    <p>后者是顶配 Pro Max，举报次数无限。</p>
+
+    <div class="note">创造模式物品栏里能直接找到全部十代机型和炎币，不用合成。</div>
+  </section>
+
+  <section id="s3">
+    <h2><span class="num">03</span>界面里有什么</h2>
+    <p>手持手机右键，弹出一个 15 按钮的界面。左列是手机自带功能，右列是 GaoLLC 附加功能。</p>
+
+    <h3>左列 · 手机功能</h3>
+    <div class="grid2">
+      <div class="card"><h4>物品识别</h4><p>准星对准方块点一下，告诉你它叫什么、Minecraft 内部 ID 是什么（比如 minecraft:grass）。</p></div>
+      <div class="card"><h4>举报</h4><p>先识别一个方块，再举报，清掉你周围 10 格内所有同种方块。每种手机有次数上限。</p></div>
+      <div class="card"><h4>远程背包</h4><p>不用打开背包栏，直接看身上带了什么东西。</p></div>
+      <div class="card"><h4>GPS 导航</h4><p>记录坐标 / 前往坐标 / 设为家 / 回家，四个按钮。</p></div>
+      <div class="card"><h4>商城入口</h4><p>一键打开炎币商城。</p></div>
+    </div>
+
+    <h3>右列 · GaoLLC 功能</h3>
+    <div class="grid2">
+      <div class="card"><h4>炎币</h4><p>查余额。炎币是可以跟别人交易的实体物品。</p></div>
+      <div class="card"><h4>商城</h4><p>每天随机刷新商品，用炎币或背包材料买。</p></div>
+      <div class="card"><h4>玩家传送</h4><p>列出在线玩家，TP 到对方身边。</p></div>
+      <div class="card"><h4>个人标点</h4><p>最多存 5 个地点，跟随存档，随时删。</p></div>
+      <div class="card"><h4>升级系统</h4><p>机型就是等级，共 10 级，一路升到 Pro Max。</p></div>
+      <div class="card"><h4>新手指南</h4><p>发放一本书，右键打开 4 页完整说明。</p></div>
+    </div>
+  </section>
+
+  <section id="s4">
+    <h2><span class="num">04</span>炎币与商城</h2>
+    <div class="coinTop">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAADKklEQVR4nG2T3U9bBRjGf+f7tEDpB/1AGGuZrDSMNcgGbrphwmI2d8HluPNKE+Of4IVX/gcmeuEu5o1eGcMuFhYWFhnLjLohJq5OVvpBaxEKLS09Lef0HFMWjRe8d+/7PO+b5+L9CY7jOJxQbdOkabRwBAddU5FV7SQb8v8b226zXdxl7ck6qedpKnu147nf72FkNMbEdJLQQABREhEQjjWhk8DBodlo8vjBLyx+u0DhoIIltZEUEUmWsSwb07AJ9wW5NX+T6ZlJVF1DEIRXBwyjxbOlR9zdrnO3sM+VVp5GfoNavYokyWguF25XD7V9k2alxYcfvM/s3BUUVUHEgY1nv3N7dY2zFxLMzoyjT8+wN/UOkbFJLEWnVqmSz6URVYPgqV7ufP0Nz3/7k05yuVk/ZGnlJ4TkBZZNH8Uf7qO4dabGxvAORyExSXm/QvIgRymfQREE1C6JxYWHjCSGkUvZAruqxtylc+TqR3zyMo27uEkzn2XuxjV8iTGkX58Q0sMEwxEaRgOr0ab0skTjrx3E0kGNictJ9n58iJFeJ9rlwhWLcxR7A/n0KLf3AhC/yFEkRvnIxt3VxelEjEK9yKeLj5FzhSzpnTJql4cXlkkgeZEpf4SFlo87BwrveZoMePwEh0KERsYoHxrsrK+wYStsB8eRz42Mcu+7z3E8Ci80D92Dw7SsGgfu8+QqAvNRkZjuENfbZGyFLc3H8oNVNgMJvjwfRh4Y7Ofd+Xn2fF6uim2CXh8NQURPZ/nq6RJr0iiXh3oQHZli1WarkGWzesj0zRlm/TaypCskJ89SQscyDXYrNZLDp/gjleLG0+/JZF7ji9eHmY1HUb1+dleW8b51nY/iOgFfL7Ksqoi2hSLDdu0QVZLw97jQNJmQW6K/UYTUPmulDJpLZ/XefaIff8bVM2EcRUOwLNPZqdXJl2uYNmQLZcqFLX5efoRZ3UdUZFyyhlE3CPm7iSRijL99ievTE3QgkDuvGvJ6iXg81BsGfe0Wqb8l7KEo1UofgijS6+lmJBEl+WaS/sEwHY46CP/HwkmYmlabVqNJx6ppKoqmHi/9axeFVzT+AyUAUOcvY8uJAAAAAElFTkSuQmCC" alt="炎币">
+      <div><strong>炎币</strong> 是商城通用货币，也是可以交易、可以丢地上的实体物品。<strong>背包里的数量就是你的余额。</strong></div>
+    </div>
+
+    <h3>怎么赚炎币：工作台合成</h3>
+    <table>
+      <tr><th>材料</th><th>→ 炎币</th><th>材料</th><th>→ 炎币</th></tr>
+      <tr><td>9 泥土</td><td>1</td><td>2 铁锭</td><td>1</td></tr>
+      <tr><td>9 石头</td><td>1</td><td>1 金锭</td><td>2</td></tr>
+      <tr><td>9 圆石</td><td>1</td><td>1 钻石</td><td>10</td></tr>
+      <tr><td>9 沙子</td><td>1</td><td>1 绿宝石</td><td>12</td></tr>
+      <tr><td>9 原木</td><td>2</td><td>1 下界之星</td><td>50</td></tr>
+    </table>
+    <p style="color:var(--muted);font-size:13px;">基准：1 炎币大约值 2 个铁锭。</p>
+
+    <h3>商城怎么用</h3>
+    <ol>
+      <li>聊天栏输入 <code>!shop</code> 看今天刷新的 5 件商品。</li>
+      <li>输入 <code>!shop 序号</code> 用炎币买。</li>
+      <li>每天可以免费刷新 5 次：<code>!shop r</code>。</li>
+    </ol>
+    <div class="note">商城每"游戏内的一天"重置刷新次数。想快点到第二天，可以睡觉跳过夜晚。</div>
+
+    <h3>没炎币也能买：三种支付方式</h3>
+    <div class="grid2">
+      <div class="card"><h4>用炎币</h4><p><code>!shop 1</code> —— 直接扣背包里的炎币。</p></div>
+      <div class="card"><h4>用一种材料</h4><p><code>!shop 1 i6</code> —— 用铁锭按比例抵扣，多付会找零。</p></div>
+      <div class="card"><h4>用多种材料凑</h4><p><code>!shop 1 mix</code> —— 系统自动从背包里凑够货款。</p></div>
+    </div>
+  </section>
+
+  <section id="s5">
+    <h2><span class="num">05</span>升级路线</h2>
+    <h3>升级系统只有一套：机型就是等级，一共 10 级</h3>
+    <div class="flow">
+      <span class="node">1 I</span><span class="arr">→</span><span class="node">2 II</span><span class="arr">→</span>
+      <span class="node">3 III</span><span class="arr">→</span><span class="node">4 IV</span><span class="arr">→</span>
+      <span class="node">5 V</span><span class="arr">→</span><span class="node">6 VI</span><span class="arr">→</span>
+      <span class="node">7 VII</span><span class="arr">→</span><span class="node">8 VIII</span><span class="arr">→</span>
+      <span class="node">9 X</span><span class="arr">→</span><span class="node">10 Pro Max</span>
+    </div>
+    <p>举报次数随等级提升：10 → 20 → 30 → 50 → 50 → 60 → 70 → 80 → 90 → <strong>无限</strong>，升级后立即生效。用 <code>!level</code> 查看当前机型和等级。</p>
+    <ul>
+      <li><strong>1-8 级</strong>：用旧手机 + 材料在 3×3 工作台无序合成，依次 I→II→…→VIII。</li>
+      <li><strong>升 9 级（智能手机 X）</strong>：背包准备 8 个钻石，脚下地面放 1 个信标（代表手机），输入 <code>!level up</code>，消耗钻石后会拿到手机 X。</li>
+      <li><strong>升 10 级（Pro Max 满级）</strong>：背包有 1 个下界之星，<code>!level up</code>，消耗后拿到 Pro Max，举报无限。</li>
+    </ul>
+    <div class="note">钻石和手机都是物品、没法摆在地面，所以"8 钻石围圈 + 中间放手机"实际做成"背包 8 钻石 + 脚下放信标代表手机"。机型升级和等级是同一套，不再分开。</div>
+  </section>
+
+  <section id="s6">
+    <h2><span class="num">06</span>命令速查</h2>
+    <p>所有命令在<strong>聊天栏</strong>输入，以英文感叹号 <code>!</code> 开头。生存和创造模式完全一样。</p>
+    <table>
+      <tr><th>命令</th><th>作用</th><th>命令</th><th>作用</th></tr>
+      <tr><td><code>!menu</code></td><td>主菜单</td><td><code>!shop</code></td><td>查看商城</td></tr>
+      <tr><td><code>!shop r</code></td><td>刷新商品</td><td><code>!shop 1</code></td><td>用炎币买第 1 件</td></tr>
+      <tr><td><code>!coin</code></td><td>查炎币余额</td><td><code>!gps</code></td><td>列出在线玩家</td></tr>
+      <tr><td><code>!gps 名字</code></td><td>传送到玩家</td><td><code>!point</code></td><td>查看个人标点</td></tr>
+      <tr><td><code>!point add 家</code></td><td>新增标点</td><td><code>!point 1</code></td><td>传送到标点 1</td></tr>
+      <tr><td><code>!level</code></td><td>看等级</td><td><code>!level up</code></td><td>检测升级</td></tr>
+      <tr><td><code>!book</code></td><td>领取指南书</td><td><code>!help</code></td><td>帮助（2/3/4 翻页）</td></tr>
+    </table>
+    <div class="ok">命令不区分大小写，输入 <code>!SHOP</code> 也可以。手机界面上的按钮是这些命令的快捷方式。</div>
+  </section>
+
+  <section id="s7" class="faq">
+    <h2><span class="num">07</span>常见问题</h2>
+    <details><summary>右键手机没反应，界面不弹出来？</summary>
+      <p>检查是不是行为包和资源包都勾选了。只开一个包会导致功能异常。另外确认手里拿的是"智能手机"系列，不是别的物品。</p></details>
+    <details><summary>物品名字显示成 item.phone:xxx.name？</summary>
+      <p>资源包没加载成功。关掉世界重新进，确认资源包已勾选。</p></details>
+    <details><summary>炎币怎么丢给别人？会不会被系统收回去？</summary>
+      <p>不会。炎币就是普通物品，丢地上别人捡了就是别人的，交易完全自由。你自己的余额会随物品减少。</p></details>
+    <details><summary>死亡后炎币会掉吗？</summary>
+      <p>会，跟普通物品一样掉在地上。想保住就别死，或者开保留物品栏规则。</p></details>
+    <details><summary>为什么我最多只能堆 64 个炎币？</summary>
+      <p>这是 Minecraft 官方的堆叠上限，模组改不了。所以炎币定得比较值钱，1 个大约顶 2 个铁锭。</p></details>
+    <details><summary>创造模式和生存模式功能一样吗？</summary>
+      <p>完全一样。所有功能、所有命令在两种模式下都可用，代码没有做区分。</p></details>
+    <details><summary>!coin 序号 为什么不能兑换了？</summary>
+      <p>兑换改成工作台合成了。<code>!coin</code> 现在只查余额，赚炎币请在工作台用材料合成。</p></details>
+    <details><summary>这个模组需要联网或服务器吗？</summary>
+      <p>不需要。全部功能在本地运行，数据是物品和存档数据，没有后端、不联网、不用登录。</p></details>
+  </section>
+
+  <div class="foot">MC智能手机 + GaoLLC Workshop · 新用户上手指南</div>
+
+</div>
+</body>
+</html>
